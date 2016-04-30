@@ -1,0 +1,8 @@
+{
+    Num x=5;
+    Bool w=True;
+    If()
+    {
+    Num w=5;
+    }
+}
