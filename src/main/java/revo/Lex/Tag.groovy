@@ -1,4 +1,4 @@
-package revo
+package revo.Lex
 
 /**
  * Created by ashraf on 4/14/2016.
@@ -46,6 +46,3 @@ class Tag {
     static int Div=83
 }
 
-enum TokenType {
-    Type ,Value,Reserve,Logic,Compare,Special,Assign,Id ,Arithmetic
-}

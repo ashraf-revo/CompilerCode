@@ -1,4 +1,14 @@
-package revo
+package revo.parser
+
+import revo.Inter.Expr
+import revo.Inter.If
+import revo.Lex.Lexer
+import revo.Lex.LexerImpl
+import revo.Lex.Tag
+import revo.Lex.Token
+import revo.Lex.TokenType
+import revo.Inter.Stmt
+import revo.Inter.While
 
 /**
  * Created by ashraf on 4/30/2016.
@@ -34,7 +44,6 @@ class Parser {
             decl(stmt)
             stmts(stmt)
         }
-
         is(Tag.CloseBrace, "2")                  //}
     }
 
@@ -56,7 +65,8 @@ class Parser {
             is(Tag.OpenParenthesis, "4")       //(
             Expr expr = expr()                              //Expr
             is(Tag.CloseParenthesis, "5")      //)
-            new IW(token: token, expr: expr, stmt: stmt(st))
+            if (token.tag == Tag.If) st.stmts << new If(expr: expr, stmt: stmt(st))
+            if (token.tag == Tag.While) st.stmts << new While(expr: expr, stmt: stmt(st))
         }
     }
 //  5 6+8*2 True False 5+5  5+5>5+5
@@ -65,6 +75,7 @@ class Parser {
     }
 
     public static void main(String[] args) {
-        new Parser(new LexerImpl("C:\\Users\\ashraf\\Desktop\\CompilerCode\\src\\main\\resources\\code")).parse()
+        String file = "code"
+        new Parser(new LexerImpl(". src main resources ${file}".replace(" ", "${File.separator}"))).parse()
     }
 }

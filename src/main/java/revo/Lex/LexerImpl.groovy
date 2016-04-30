@@ -1,4 +1,4 @@
-package revo
+package revo.Lex
 
 class LexerImpl implements Lexer {
     private Map<String, Token> TokenRepository = [:]
